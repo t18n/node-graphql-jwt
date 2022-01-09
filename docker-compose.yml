@@ -1,15 +1,15 @@
-version: "3.3"
+version: '3.3'
 
 services:
   db:
     image: postgres:11.8
     restart: always
     environment:
-      POSTGRES_DB: "dev"
-      POSTGRES_USER: "db_user"
-      POSTGRES_PASSWORD: "db_password"
-      POSTGRES_ROOT_PASSWORD: "root_password"
+      POSTGRES_DB: 'dev'
+      POSTGRES_USER: 'db_user'
+      POSTGRES_PASSWORD: 'db_password'
+      POSTGRES_ROOT_PASSWORD: 'root_password'
     ports:
-      - "54327:5432"
+      - '54327:5432'
     volumes:
       - ./.docker/postgres:/var/lib/postgresql

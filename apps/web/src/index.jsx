@@ -8,21 +8,21 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink, Observable } from 'apollo-link';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode from 'jwt-decode';
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const requestLink = new ApolloLink(
   (operation, forward) =>
-    new Observable(observer => {
+    new Observable((observer) => {
       let handle;
       Promise.resolve(operation)
         .then((operation) => {
-          const accessToken = getAccessToken()
+          const accessToken = getAccessToken();
           if (accessToken)
             operation.setContext({
               headers: {
-                authorization: `Bearer ${accessToken}`
-              }
-            })
+                authorization: `Bearer ${accessToken}`,
+              },
+            });
         })
         .then(() => {
           handle = forward(operation).subscribe({
@@ -53,9 +53,9 @@ const client = new ApolloClient({
         try {
           const { exp } = jwtDecode(token);
           if (Date.now() >= exp * 1000) {
-            return false
+            return false;
           } else {
-            return true
+            return true;
           }
         } catch {
           return false;
@@ -63,33 +63,33 @@ const client = new ApolloClient({
       },
       fetchAccessToken: () => {
         return fetch(`${process.env.REACT_APP_BACKEND_URI}/refresh_token`, {
-          method: "POST",
-          credentials: "include"
+          method: 'POST',
+          credentials: 'include',
         });
       },
-      handleFetch: accessToken => {
-        setAccessToken(accessToken)
+      handleFetch: (accessToken) => {
+        setAccessToken(accessToken);
       },
-      handleError: err => {
+      handleError: (err) => {
         // full control over handling token fetch Error
         console.warn('Your refresh token is invalid. Try to relogin');
         console.error(err);
 
         // your custom action here
         //  user.logout();
-      }
+      },
     }),
     onError(({ graphQLErrors, networkError }) => {
-      console.log(graphQLErrors)
-      console.log(networkError)
+      console.log(graphQLErrors);
+      console.log(networkError);
     }),
     requestLink,
     new HttpLink({
       uri: process.env.REACT_APP_BACKEND_URI,
-      credentials: 'include'
-    })
+      credentials: 'include',
+    }),
   ]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
@@ -97,8 +97,6 @@ ReactDOM.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ApolloProvider>
-  ,
+  </ApolloProvider>,
   document.getElementById('root')
 );
-

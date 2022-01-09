@@ -1,10 +1,26 @@
 # Node GraphQL JWT
 
+A simple monorepo Node GraphQL JWT app using
+
+- Docker
+- Typeorm
+- Apollo
+- Type Graphql
+- Turborepo
+- Pnpm
+- Eslint
+- Create React App
+- Storybook 6
+- Chakra UI
+
 ## Prerequisites
+
 - Node >14
 - PNpm >6
 
 ## Getting started
+
+- Change `**/.env.sample` files to `**/.env`
 - Install pnpm `npm install -g pnpm`
 - Install all packages: `pnpm install`
 - Terminal 1: `docker compose up`
