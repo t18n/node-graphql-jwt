@@ -1,0 +1,61 @@
+{
+  "name": "node-graphql-jwt",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "pnpm -r run --filter @node-graphql-jwt/backend",
+    "web": "pnpm -r --filter @node-graphql-jwt/web",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "typecheck": "pnpm tsc",
+    "prepare": "husky install"
+  },
+  "license": "MIT",
+  "author": "Turbo Thinh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turbothinh/node-graphql-jwt.git"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,md,mdx,js,jsx}": [
+      "pnpm -r format",
+      "pnpm lint"
+    ]
+  },
+  "turbo": {
+    "npmClient": "pnpm",
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**",
+          ".next/**"
+        ]
+      },
+      "deploy": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "dev": {
+        "cache": false
+      }
+    }
+  },
+  "engines": {
+    "node": ">=14",
+    "pnpm": ">=6",
+    "yarn": "Please use pnpm",
+    "npm": "Please use pnpm"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.1.7",
+    "simple-git-hooks": "^2.7.0"
+  }
+}

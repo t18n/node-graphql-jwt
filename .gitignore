@@ -1,0 +1,5 @@
+./.docker
+!./docker/postgres/.gitkeep
+node_modules
+
+**/**/.env
