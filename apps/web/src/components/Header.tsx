@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as NextLink } from 'react-router-dom';
 import { useLogOutMutation, useMeQuery } from '../generated/graphql';
-import { setAccessToken } from '../configs/accessToken';
+import { setAccessToken } from '../utils/accessToken';
 import { Link, Button, Stack, Text } from '@node-graphql-jwt/ui';
 
 const MenuItem = ({ children, to, ...rest }) => {

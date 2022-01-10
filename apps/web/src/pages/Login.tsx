@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { MeDocument, MeQuery, useLoginMutation } from '../generated/graphql';
-import { setAccessToken } from '../configs/accessToken';
+import { setAccessToken } from '../utils/accessToken';
 import {
   Box,
   FormControl,

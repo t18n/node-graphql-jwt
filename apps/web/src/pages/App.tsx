@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes } from '../Routes';
-import { setAccessToken } from '../configs/accessToken';
-import { Layout } from '../components/Layout';
-import { CircularProgress } from '@node-graphql-jwt/ui';
+import { setAccessToken } from '../utils/accessToken';
+import { Progress } from '@node-graphql-jwt/ui';
 
 interface Props {}
 
@@ -21,7 +20,7 @@ export const App: React.FC<Props> = () => {
   }, []);
 
   if (loading) {
-    return <CircularProgress isIndeterminate color="green.300" />;
+    return <Progress size="xs" isIndeterminate />;
   }
 
   return <Routes />;
