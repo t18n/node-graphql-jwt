@@ -24,26 +24,37 @@ import cors from 'cors';
   app.get('/', (_req, res) => res.send('Hello'));
 
   app.post('/refresh_token', async (req, res) => {
-    const token = req.cookies.jwt;
-    console.log(token);
-    if (!token) return res.send({ ok: false, accessToken: '' });
+    const refreshToken = req.cookies.jwt;
+
+    if (!refreshToken) {
+      console.log('Refresh token not received!');
+
+      return res.send({
+        ok: false,
+        accessToken: '',
+      });
+    }
 
     let payload: any = null;
 
     try {
-      payload = verify(token, process.env.REFRESH_TOKEN_SECRET!);
+      payload = verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!);
     } catch (err) {
-      console.log(err);
+      console.log('Refresh token not valid!', err);
       return res.send({ ok: false, accessToken: '' });
     }
 
-    // Token is valid and send back access token
+    // Refresh Token is valid, issue a new token
     const user = await User.findOne({ id: payload.userId });
 
-    if (!user) return res.send({ ok: false, accessToken: '' });
-
-    if (user.tokenVersion !== payload.tokenVersion)
+    if (!user) {
+      console.log('User is not available anymore.');
       return res.send({ ok: false, accessToken: '' });
+    }
+
+    if (user.tokenVersion !== payload.tokenVersion) {
+      return res.send({ ok: false, accessToken: '' });
+    }
 
     sendRefreshToken(res, createRefershToken(user));
 

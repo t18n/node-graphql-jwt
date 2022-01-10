@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getAccessToken, setAccessToken } from './utils/accessToken';
-import { App } from './pages/App';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink, Observable } from 'apollo-link';
@@ -94,9 +93,7 @@ const client = new ApolloClient({
 export const AppRoot = ({ children }) => (
   <ApolloProvider client={client}>
     <UIProvider>
-      <React.StrictMode>
-        {children}
-      </React.StrictMode>
+      <React.StrictMode>{children}</React.StrictMode>
     </UIProvider>
   </ApolloProvider>
-)
+);

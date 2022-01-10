@@ -12,6 +12,7 @@ A simple monorepo Node GraphQL JWT app using
 - Create React App
 - Storybook 6
 - Chakra UI
+- Jest
 
 ## Prerequisites
 
@@ -26,3 +27,7 @@ A simple monorepo Node GraphQL JWT app using
 - Terminal 1: `docker compose up`
 - Terminal 2: `pnpm backend migrate:run && pnpm backend start`
 - Terminal 3 `pnpm web gen && pnpm web start`
+
+## TODO
+
+- [ ] Web E2E test
