@@ -9,6 +9,7 @@ import { ApolloLink, Observable } from 'apollo-link';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode from 'jwt-decode';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { UIProvider } from '@node-graphql-jwt/ui/src/Provider';
 
 const requestLink = new ApolloLink(
   (operation, forward) =>
@@ -85,7 +86,7 @@ const client = new ApolloClient({
     }),
     requestLink,
     new HttpLink({
-      uri: process.env.REACT_APP_BACKEND_URI,
+      uri: `${process.env.REACT_APP_BACKEND_URI}/graphql`,
       credentials: 'include',
     }),
   ]),
@@ -94,9 +95,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <UIProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </UIProvider>
   </ApolloProvider>,
   document.getElementById('root')
 );
