@@ -1,6 +1,11 @@
 # Node GraphQL JWT
 
-A simple monorepo Node GraphQL JWT app using
+A simple monorepo Node GraphQL JWT app including
+- A Node GraphQL backend
+- A React frontend with CRA
+- A UI package
+
+## Technologies
 
 - Docker
 - Typeorm
