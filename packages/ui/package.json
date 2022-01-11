@@ -4,7 +4,7 @@
   "private": true,
   "main": "./src/index.tsx",
   "scripts": {
-    "start": "start-storybook -p 6006",
+    "dev": "start-storybook -p 6006",
     "build": "build-storybook",
     "serve": "serve storybook-static -p 3001"
   },

@@ -17,7 +17,8 @@
     "prepare": "husky install",
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "deploy:web": "turbo run build --scope=web --includeDependencies --no-deps"
+    "test": "turbo run test",
+    "deploy:web": "turbo run build --scope=@node-graphql-jwt/backend --includeDependencies --no-deps"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.9.0",
@@ -53,6 +54,7 @@
           "build"
         ]
       },
+      "test": {}, 
       "dev": {
         "cache": false
       }

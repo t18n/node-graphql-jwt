@@ -2,13 +2,14 @@
   "name": "@node-graphql-jwt/backend",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
     "entity:create": "ts-node --transpile-only ./node_modules/typeorm/cli.js entity:create -n",
     "migrate:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate -n",
     "migrate:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
     "migrate:revert": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
     "schema:drop": "ts-node --transpile-only ./node_modules/typeorm/cli.js schema:drop",
-    "test": "majestic"
+    "test": "jest",
+    "test:gui": "majestic"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
